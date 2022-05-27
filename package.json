@@ -1,7 +1,7 @@
 {
-  "name": "newmermaid",
+  "name": "renamer",
   "version": "1.0.0",
-  "description": "utility for generating architecture diagrams. Similar to mermaid.js, but with simpler and with limited scope",
+  "description": "utility for rename files",
   "main": "index.js",
   "author": "IuriiDziuba",
   "license": "ISC",
@@ -26,5 +26,6 @@
     "prettier": "2.3.2"
   },
   "dependencies": {
+    "canvas": "^2.9.1"
   }
 }
