@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PostPresenter {
-    mapPostResponse(post) {
-        return { post }
-    }
+  mapPostResponse(post) {
+    return { post };
+  }
 
-    mapMenuPostResponse(posts) {
-        return { posts }
-    }
+  mapMenuPostResponse(posts) {
+    return { posts };
+  }
 }

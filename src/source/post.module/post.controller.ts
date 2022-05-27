@@ -10,16 +10,22 @@ import {
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create.post.dto';
 import { UpdatePostDto } from './dto/update.post.dto';
-import { PostPresenter } from "./post.presenter";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { createPost, findAllPosts, findOnePost, updatePost, removePost } from "./consts/swagger.consts";
+import { PostPresenter } from './post.presenter';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  createPost,
+  findAllPosts,
+  findOnePost,
+  updatePost,
+  removePost,
+} from './consts/swagger.consts';
 
-@ApiTags('Post modules')
+@ApiTags('Post module')
 @Controller('post')
 export class PostController {
   constructor(
-      private readonly postService: PostService,
-      private readonly postPresenter: PostPresenter
+    private readonly postService: PostService,
+    private readonly postPresenter: PostPresenter,
   ) {}
 
   @ApiOperation(createPost.apiOperation)
@@ -27,7 +33,7 @@ export class PostController {
   @Post()
   async createPost(@Body() createPostDto: CreatePostDto) {
     const newPost = await this.postService.createPost(createPostDto);
-    return this.postPresenter.mapPostResponse(newPost)
+    return this.postPresenter.mapPostResponse(newPost);
   }
 
   @ApiOperation(findAllPosts.apiOperation)
@@ -35,7 +41,7 @@ export class PostController {
   @Get()
   async findAllPosts() {
     const foundedPosts = await this.postService.findAllPosts();
-    return this.postPresenter.mapMenuPostResponse(foundedPosts)
+    return this.postPresenter.mapMenuPostResponse(foundedPosts);
   }
 
   @ApiOperation(findOnePost.apiOperation)
@@ -43,15 +49,21 @@ export class PostController {
   @Get(':postId')
   async findOnePost(@Param('postId') postId: string) {
     const foundedPost = await this.postService.findOnePost(postId);
-    return this.postPresenter.mapPostResponse(foundedPost)
+    return this.postPresenter.mapPostResponse(foundedPost);
   }
 
   @ApiOperation(updatePost.apiOperation)
   @ApiResponse(updatePost.apiResponse)
   @Patch(':postId')
-  async updatePost(@Param('postId') postId: string, @Body() updatePostDto: UpdatePostDto) {
-    const updatedPost = await this.postService.updatePost(postId, updatePostDto);
-    return this.postPresenter.mapPostResponse(updatedPost)
+  async updatePost(
+    @Param('postId') postId: string,
+    @Body() updatePostDto: UpdatePostDto,
+  ) {
+    const updatedPost = await this.postService.updatePost(
+      postId,
+      updatePostDto,
+    );
+    return this.postPresenter.mapPostResponse(updatedPost);
   }
 
   @ApiOperation(removePost.apiOperation)
@@ -59,6 +71,6 @@ export class PostController {
   @Delete(':postId')
   async removePost(@Param('postId') postId: string) {
     const removedPost = await this.postService.removePost(postId);
-    return this.postPresenter.mapPostResponse(removedPost)
+    return this.postPresenter.mapPostResponse(removedPost);
   }
 }

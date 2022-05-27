@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create.post.dto';
 import { UpdatePostDto } from './dto/update.post.dto';
-import { PostRepository } from "./post.repository";
+import { PostRepository } from './post.repository';
 
 @Injectable()
 export class PostService {
-  constructor(
-      private readonly postRepository: PostRepository,
-  ) {}
+  constructor(private readonly postRepository: PostRepository) {}
   async createPost(createPostDto: CreatePostDto) {
     const newPost = await this.postRepository.createPost(createPostDto);
     return newPost;
@@ -24,11 +22,14 @@ export class PostService {
   }
 
   async updatePost(postId: string, updatePostDto: UpdatePostDto) {
-    const updatedPost = await this.postRepository.updatePost(postId, updatePostDto);
+    const updatedPost = await this.postRepository.updatePost(
+      postId,
+      updatePostDto,
+    );
     return updatedPost;
   }
 
   async removePost(postId: string) {
-   await this.postRepository.removePost(postId);
+    await this.postRepository.removePost(postId);
   }
 }

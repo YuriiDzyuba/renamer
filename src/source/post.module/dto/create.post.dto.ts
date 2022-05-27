@@ -1,5 +1,3 @@
-import {Post} from "../types/post.type";
+import { Post } from '../types/post.type';
 
-export class CreatePostDto implements Pick<Post, any> {
-
-}
+export class CreatePostDto implements Pick<Post, any> {}
