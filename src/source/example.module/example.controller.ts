@@ -1,7 +1,7 @@
 import {
   Controller,
   Get,
-  Example,
+  Post,
   Body,
   Patch,
   Param,
@@ -30,7 +30,7 @@ export class ExampleController {
 
   @ApiOperation(createExample.apiOperation)
   @ApiResponse(createExample.apiResponse)
-  @Example()
+  @Post()
   async createExample(@Body() createExampleDto: CreateExampleDto) {
     const newExample = await this.exampleService.createExample(createExampleDto);
     return this.examplePresenter.mapExampleResponse(newExample);
