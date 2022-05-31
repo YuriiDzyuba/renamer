@@ -5,4 +5,4 @@ const pathToSourceFolder = path.join(__dirname, 'source')
 
 const renamer = new ReNamEr(pathToSourceFolder)
 
-renamer.renameAll('account', 'post')
+renamer.renameAll('post', 'example')
