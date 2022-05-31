@@ -5,4 +5,6 @@ const pathToSourceFolder = path.join(__dirname, 'source')
 
 const renamer = new ReNamEr(pathToSourceFolder)
 
-renamer.renameAll('post', 'example')
+//current name - example
+//type new name for documents paths and entities
+renamer.renameAll('example', 'account')
