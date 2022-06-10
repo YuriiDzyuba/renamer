@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateExampleDto } from './presenters/request.dto/create.example.dto';
-import { UpdateExampleDto } from './presenters/request.dto/update.example.dto';
 import { ExampleRepository } from './example.repository';
+import { ExampleRepository } from './example.repository';
+import { IExampleService } from "./interfaces/exampleService.interface";
+
 
 @Injectable()
-export class ExampleService {
+export class ExampleService implements IExampleService {
   constructor(private readonly exampleRepository: ExampleRepository) {}
-  async createExample(createExampleDto: CreateExampleDto): Promise<any> {
+
+  async createExample(createExampleDto: any): Promise<any> {
     const newExample = await this.exampleRepository.createExample(createExampleDto);
     return newExample;
   }
@@ -21,10 +23,10 @@ export class ExampleService {
     return foundedExample;
   }
 
-  async updateExample(exampleId: string, updateExampleDto: UpdateExampleDto): Promise<any> {
+  async updateExample(exampleId: string, updateExample: any): Promise<any> {
     const updatedExample = await this.exampleRepository.updateExample(
-      exampleId,
-      updateExampleDto,
+        exampleId,
+        updateExample,
     );
     return updatedExample;
   }
