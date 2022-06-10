@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateExampleDto } from './dto/create.example.dto';
-import { UpdateExampleDto } from './dto/update.example.dto';
+import { CreateExampleDto } from './presenters/request.dto/create.example.dto';
+import { UpdateExampleDto } from './presenters/request.dto/update.example.dto';
 import { ExampleRepository } from './example.repository';
 
 @Injectable()

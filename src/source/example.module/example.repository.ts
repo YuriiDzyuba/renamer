@@ -1,4 +1,4 @@
-import { CreateExampleDto } from './dto/create.example.dto';
+import { CreateExampleDto } from './presenters/request.dto/create.example.dto';
 import { ExampleEntity } from './entities/example.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

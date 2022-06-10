@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ExampleService } from './example.service';
 import { ExampleController } from './example.controller';
 import { ExampleRepository } from './example.repository';
-import { ExamplePresenter } from './example.presenter';
+import { ExamplePresenter } from './presenters/example.presenter';
 import { ExampleMapper } from './example.mapper';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExampleEntity } from './entities/example.entity';

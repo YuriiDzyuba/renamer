@@ -8,9 +8,9 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ExampleService } from './example.service';
-import { CreateExampleDto } from './dto/create.example.dto';
-import { UpdateExampleDto } from './dto/update.example.dto';
-import { ExamplePresenter } from './example.presenter';
+import { CreateExampleDto } from './presenters/request.dto/create.example.dto';
+import { UpdateExampleDto } from './presenters/request.dto/update.example.dto';
+import { ExamplePresenter } from './presenters/example.presenter';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   createExample,
