@@ -4,6 +4,7 @@ import {
   Controller,
   ValidationPipe,
   Get,
+  Inject,
   Post,
   Body,
   Patch,
@@ -22,13 +23,15 @@ import {
   updateExample,
   removeExample,
 } from './consts/swagger.consts';
+import { IExampleServiceToken } from "./interfaces/exampleService.interface";
 
 @ApiTags('Example module')
 @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
 @Controller('example')
 export class ExampleController {
   constructor(
-    private readonly exampleService: ExampleService,
+    @Inject(IExampleServiceToken)
+    private exampleService: ExampleService,
     private readonly examplePresenter: ExamplePresenter,
   ) {}
 

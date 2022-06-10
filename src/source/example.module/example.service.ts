@@ -1,12 +1,15 @@
-import { Injectable } from '@nestjs/common';
-import { ExampleRepository } from './example.repository';
+import { Injectable, Inject } from '@nestjs/common';
 import { ExampleRepository } from './example.repository';
 import { IExampleService } from "./interfaces/exampleService.interface";
+import { IExampleRepositoryToken } from "./interfaces/exampleRepository.interface";
 
 
 @Injectable()
 export class ExampleService implements IExampleService {
-  constructor(private readonly exampleRepository: ExampleRepository) {}
+  constructor(
+      @Inject(IExampleRepositoryToken)
+      private exampleRepository: ExampleRepository,
+  ) {}
 
   async createExample(createExampleDto: any): Promise<any> {
     const newExample = await this.exampleRepository.createExample(createExampleDto);
