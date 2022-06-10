@@ -1,5 +1,8 @@
 import {
+  ParseUUIDPipe,
+  UsePipes,
   Controller,
+  ValidationPipe,
   Get,
   Post,
   Body,
@@ -21,6 +24,7 @@ import {
 } from './consts/swagger.consts';
 
 @ApiTags('Example module')
+@UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
 @Controller('example')
 export class ExampleController {
   constructor(
@@ -31,7 +35,9 @@ export class ExampleController {
   @ApiOperation(createExample.apiOperation)
   @ApiResponse(createExample.apiResponse)
   @Post()
-  async createExample(@Body() createExampleDto: CreateExampleDto) {
+  async createExample(
+    @Body() createExampleDto: CreateExampleDto
+  ): Promise<any> {
     const newExample = await this.exampleService.createExample(createExampleDto);
     return this.examplePresenter.mapExampleResponse(newExample);
   }
@@ -39,7 +45,7 @@ export class ExampleController {
   @ApiOperation(findAllExamples.apiOperation)
   @ApiResponse(findAllExamples.apiResponse)
   @Get()
-  async findAllExamples() {
+  async findAllExamples(): Promise<any> {
     const foundedExamples = await this.exampleService.findAllExamples();
     return this.examplePresenter.mapMenuExampleResponse(foundedExamples);
   }
@@ -47,7 +53,9 @@ export class ExampleController {
   @ApiOperation(findOneExample.apiOperation)
   @ApiResponse(findOneExample.apiResponse)
   @Get(':exampleId')
-  async findOneExample(@Param('exampleId') exampleId: string) {
+  async findOneExample(
+    @Param('exampleId', new ParseUUIDPipe()) exampleId: string
+  ): Promise<any> {
     const foundedExample = await this.exampleService.findOneExample(exampleId);
     return this.examplePresenter.mapExampleResponse(foundedExample);
   }
@@ -56,9 +64,9 @@ export class ExampleController {
   @ApiResponse(updateExample.apiResponse)
   @Patch(':exampleId')
   async updateExample(
-    @Param('exampleId') exampleId: string,
+    @Param('exampleId', new ParseUUIDPipe()) exampleId: string,
     @Body() updateExampleDto: UpdateExampleDto,
-  ) {
+  ): Promise<any> {
     const updatedExample = await this.exampleService.updateExample(
       exampleId,
       updateExampleDto,
@@ -69,7 +77,9 @@ export class ExampleController {
   @ApiOperation(removeExample.apiOperation)
   @ApiResponse(removeExample.apiResponse)
   @Delete(':exampleId')
-  async removeExample(@Param('exampleId') exampleId: string) {
+  async removeExample(
+    @Param('exampleId', new ParseUUIDPipe()) exampleId: string
+  ): Promise<any> {
     const removedExample = await this.exampleService.removeExample(exampleId);
     return this.examplePresenter.mapExampleResponse(removedExample);
   }
