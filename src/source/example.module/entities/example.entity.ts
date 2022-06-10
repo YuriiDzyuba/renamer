@@ -3,15 +3,9 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Account } from '../../account.module/types/account.type';
-import { AccountEntity } from '../../account.module/entities/account.entity';
-import { CommentEntity } from '../../comment.module/entities/comment.entity';
 
 @Entity({ name: 'examples' })
 export class ExampleEntity implements Example {
@@ -19,17 +13,7 @@ export class ExampleEntity implements Example {
   exampleId: string;
 
   @Column()
-  body: string;
-
-  @ManyToOne(() => AccountEntity)
-  exampleAuthor: Account;
-
-  @ManyToMany(() => CommentEntity)
-  @JoinTable()
-  comments: Comment[];
-
-  @ManyToOne(() => AccountEntity)
-  likedBy: Account[];
+  exampleName: string;
 
   @CreateDateColumn()
   createdAt: Date;
