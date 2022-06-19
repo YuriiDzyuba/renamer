@@ -10,7 +10,7 @@ import { ExampleMapper } from './example.mapper';
 import { ExampleEntity } from './entities/example.entity';
 import { IExampleRepositoryToken } from "./interfaces/exampleRepository.interface";
 import { IExampleServiceToken } from "./interfaces/exampleService.interface";
-import config from './configs/example.configs';
+import config from './configs/example.config';
 
 
 @Module({
